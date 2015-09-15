@@ -12,7 +12,7 @@ define Package/openstack-config
   SECTION:=base
   CATEGORY:=Base system
   TITLE:=rc scripts to configure gluon instances
-  DEPENDS:=+wget
+  DEPENDS:=+wget +gluon-setup-mode-virtual
 endef
 
 define Package/openstack-config/description
@@ -31,8 +31,7 @@ define Build/Compile
 endef
 
 define Package/openstack-config/install
-	$(INSTALL_DIR) $(1)/etc/init.d
-	$(INSTALL_BIN) ./files/openstack-configure $(1)/etc/init.d/
+	$(CP) ./files/* $(1)/
 endef
 
 $(eval $(call BuildPackage,openstack-config))
