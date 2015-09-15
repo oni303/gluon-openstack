@@ -6,7 +6,7 @@ XN=openstack-config
 START=99
 
 start() {
-	if [ "0"=="$(uci get gluon-setup-mode.@setup_mode[0].configured)" ]
+	if [ 0 == $(uci get gluon-setup-mode.@setup_mode[0].configured) ]
 	then
 		uci set fastd.mesh_vpn.enabled=1
 		uci set fastd.mesh_vpn.secret="$(fastd --generate-key | grep Secret| cut -d' ' -f2)"
